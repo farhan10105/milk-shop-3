@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Farhan's Milk Shop</title>
+  <style>
+    body { font-family: sans-serif; margin: 0; background: #f8f8f8; }
+    header { background: #2c3e50; color: white; padding: 20px; text-align: center; }
+    section { padding: 20px; }
+    .product, .review { background: white; padding: 15px; margin: 10px 0; border-radius: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    label { display: block; margin-top: 10px; }
+    input, select, textarea {
+      width: 100%; padding: 8px; margin-top: 5px;
+      border: 1px solid #ccc; border-radius: 5px;
+    }
+    button, .whatsapp-btn {
+      background: #27ae60; color: white; border: none;
+      padding: 10px 15px; margin-top: 15px;
+      border-radius: 5px; cursor: pointer;
+      text-decoration: none; display: inline-block;
+    }
+    #replaceBtn { background: #e67e22; display: none; }
+
+    #adminPanel { display: none; margin-top: 20px; background: #fff; padding: 20px; border-radius: 10px; }
+    #adminPanel img { max-width: 100px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Farhan's Milk Shop</h1>
+    <p>Fresh Dairy Products in Your Area</p>
+  </header>
+
+  <section>
+    <h2>🛒 Our Products</h2>
+
+    <div class="product"><h3>Milk (1L)</h3><p>Rs. 200</p></div>
+    <div class="product"><h3>Yogurt (1 Kg)</h3><p>Rs. 250</p></div>
+    <div class="product"><h3>Ghee (1 Kg)</h3><p>Rs. 3200</p></div>
+
+    <h2>📩 Place Your Order</h2>
+    <form id="orderForm">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" required>
+
+      <label for="product">Product</label>
+      <select id="product" required>
+        <option value="">-- Select --</option>
+        <option value="Milk">Milk</option>
+        <option value="Yogurt">Yogurt</option>
+        <option value="Ghee">Ghee</option>
+      </select>
+
+      <label for="quantity">Quantity (e.g. 2 Liters or 3 Kg)</label>
+      <input type="text" id="quantity" required>
+
+      <label for="address">Delivery Address</label>
+      <textarea id="address" required></textarea>
+
+      <button type="button" onclick="sendWhatsApp()">Send Order via WhatsApp</button>
+    </form>
+    <button id="replaceBtn" onclick="replaceOrder()">Replace Order</button>
+    <br><br>
+    <a class="whatsapp-btn" href="https://wa.me/923270553470" target="_blank">Chat on WhatsApp</a>
+  </section>
+
+  <section>
+    <h2>🗣️ Customer Reviews</h2>
+    <div id="reviewsContainer"></div>
+    <form onsubmit="addReview(event)">
+      <label for="reviewText">Write a Review</label>
+      <textarea id="reviewText" required></textarea>
+      <button type="submit">Submit Review</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>🔐 Admin Access</h2>
+    <button onclick="showAdmin()">Open Admin Page</button>
+    <div id="adminPanel">
+      <h3>Reply to Reviews</h3>
+      <div id="adminReviews"></div>
+
+      <h3>Add Picture</h3>
+      <input type="file" id="adminImageInput" onchange="previewImage(event)">
+      <img id="previewPic" src="" alt="Preview" />
+    </div>
+  </section>
+
+  <script>
+    function sendWhatsApp() {
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const product = document.getElementById('product').value;
+      const quantity = document.getElementById('quantity').value;
+      const address = document.getElementById('address').value;
+
+      if (!name || !phone || !product || !quantity || !address) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      const message = `New Order:%0AName: ${name}%0APhone: ${phone}%0AProduct: ${product}%0AQuantity: ${quantity}%0AAddress: ${address}`;
+      const url = `https://wa.me/923270553470?text=${message}`;
+      window.open(url, '_blank');
+
+      document.getElementById('orderForm').style.display = 'none';
+      document.getElementById('replaceBtn').style.display = 'inline-block';
+    }
+
+    function replaceOrder() {
+      document.getElementById('orderForm').reset();
+      document.getElementById('orderForm').style.display = 'block';
+      document.getElementById('replaceBtn').style.display = 'none';
+    }
+
+    function addReview(event) {
+      event.preventDefault();
+      const reviewText = document.getElementById('reviewText').value;
+      const reviewDiv = document.createElement('div');
+      reviewDiv.classList.add('review');
+      reviewDiv.innerHTML = `<p>${reviewText}</p><p><strong>Admin Reply:</strong> <span class="adminReply">Pending</span></p>`;
+      document.getElementById('reviewsContainer').appendChild(reviewDiv);
+
+      const adminReplyDiv = reviewDiv.cloneNode(true);
+      adminReplyDiv.querySelector('.adminReply').setAttribute('contenteditable', 'true');
+      document.getElementById('adminReviews').appendChild(adminReplyDiv);
+
+      document.getElementById('reviewText').value = '';
+    }
+
+    function showAdmin() {
+      const pass = prompt("Enter Admin Password:");
+      if (pass === "tyty0987654321") {
+        document.getElementById('adminPanel').style.display = 'block';
+      } else {
+        alert("Wrong password.");
+      }
+    }
+
+    function previewImage(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('previewPic').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
+
+</body>
+</html>
