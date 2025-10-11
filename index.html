@@ -1,197 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Serajia Milk Shop</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f8f8f8;
-      margin: 0;
-      padding: 0;
-      color: #222;
-    }
-    header {
-      background: #006400;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
-    h1 {
-      margin: 0;
-    }
-    .container {
-      width: 90%;
-      max-width: 800px;
-      margin: 20px auto;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-    h2 {
-      color: #006400;
-      border-bottom: 2px solid #006400;
-      padding-bottom: 5px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-    th, td {
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
-      text-align: left;
-    }
-    button {
-      background: #006400;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      border-radius: 5px;
-      margin-top: 10px;
-    }
-    button:hover {
-      background: #008000;
-    }
-    .admin-section {
-      display: none;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      background: #eee;
-      margin-top: 30px;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Serajia Milk Shop</title>
+<style>
+  body {margin:0;font-family:"Poppins",sans-serif;background:linear-gradient(135deg,#f3fff3,#e9ffe9);color:#222;}
+  header{background:#006400;color:#fff;text-align:center;padding:30px 10px;border-bottom:5px solid #00aa00;}
+  header h1{margin:0;font-size:2em;}
+  header p{margin:5px 0;font-size:1.1em;}
+  nav{background:#004d00;display:flex;justify-content:center;flex-wrap:wrap;gap:20px;padding:12px;}
+  nav a{color:white;text-decoration:none;font-weight:bold;}
+  nav a:hover{text-decoration:underline;}
+  section{max-width:1000px;margin:30px auto;background:white;border-radius:20px;padding:25px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+  h2{color:#006400;text-align:center;}
+  .menu-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
+  .item{background:#f9fff9;border:1px solid #d2ffd2;padding:20px;border-radius:15px;box-shadow:0 3px 6px rgba(0,0,0,0.1);text-align:center;}
+  .item h3{margin-bottom:5px;color:#006400;}
+  .item p{margin:5px 0;}
+  .order-form{text-align:center;margin-top:30px;}
+  input,select{width:80%;padding:8px;margin:6px;border:1px solid #ccc;border-radius:5px;}
+  button{background:#25D366;color:white;border:none;padding:10px 20px;border-radius:5px;cursor:pointer;font-size:16px;}
+  button:hover{background:#1ebe5c;}
+  .whatsapp-button{display:inline-flex;align-items:center;justify-content:center;background-color:#25D366;color:white;padding:10px 20px;border-radius:50px;font-size:16px;text-decoration:none;font-weight:bold;margin-top:10px;}
+  .whatsapp-button img{width:25px;height:25px;margin-right:8px;}
+  table{width:100%;border-collapse:collapse;margin-top:15px;}
+  th,td{border:1px solid #ccc;padding:8px;text-align:center;}
+  th{background:#006400;color:white;}
+  footer{text-align:center;padding:20px;background:#004d00;color:white;margin-top:40px;}
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>Serajia Milk Shop</h1>
-    <p>491 /A Peoples Colony No.1, Near MC Model Higher Secondary School, Faisalabad</p>
-    <p>📞 Phone / WhatsApp: <strong>0334-6253470</strong></p>
-  </header>
+<header>
+  <h1>Serajia Milk Shop</h1>
+  <p>سرجیہ ملک شاپ</p>
+</header>
 
-  <div class="container">
-    <h2>Menu / مینو</h2>
-    <table>
-      <tr>
-        <th>Item / آئٹم</th>
-        <th>Price / قیمت</th>
-      </tr>
-      <tr>
-        <td>Fresh Milk (Only Buffalos) / تازہ دودھ (بھینس کا)</td>
-        <td>Rs. 220 per kg</td>
-      </tr>
-      <tr>
-        <td>Fresh Milk (Cows & Buffalos) / تازہ دودھ (گائے اور بھینس کا)</td>
-        <td>Rs. 200 per kg</td>
-      </tr>
-      <tr>
-        <td>Fresh Yogurt / تازہ دہی</td>
-        <td>Rs. 250 per kg</td>
-      </tr>
-      <tr>
-        <td>Fresh Desi Ghee / خالص دیسی گھی</td>
-        <td>Rs. 3600 per kg</td>
-      </tr>
-    </table>
+<nav>
+  <a href="#home">🏠 Home</a>
+  <a href="#menu">🥛 Menu</a>
+  <a href="#order">🛒 Order</a>
+  <a href="#admin">🧾 Admin Panel</a>
+</nav>
 
-    <h2>Place an Order / آرڈر کریں</h2>
-    <form id="orderForm">
-      <label>Customer Name / نام:</label><br>
-      <input type="text" id="name" required style="width:100%; padding:8px;"><br><br>
+<section id="home">
+  <h2>Welcome / خوش آمدید</h2>
+  <p style="text-align:center;">تازہ اور خالص دودھ، دہی، اور دیسی گھی — آپ کے گھر تک پہنچائیں</p>
+  <p style="text-align:center;"><b>📍 Address:</b> 491/A Peoples Colony No.1, Near MC Model Higher Secondary School, Faisalabad</p>
+  <p style="text-align:center;"><b>📞 Phone / WhatsApp:</b> 0334-6253470</p>
+  <div style="text-align:center;">
+    <a class="whatsapp-button" href="https://wa.me/923346253470" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">Chat on WhatsApp
+    </a>
+  </div>
+</section>
 
-      <label>Select Item / آئٹم منتخب کریں:</label><br>
-      <select id="item" required style="width:100%; padding:8px;">
-        <option value="Fresh Milk (Only Buffalos)">Fresh Milk (Only Buffalos) - Rs.220/kg</option>
-        <option value="Fresh Milk (Cows & Buffalos)">Fresh Milk (Cows & Buffalos) - Rs.200/kg</option>
-        <option value="Fresh Yogurt">Fresh Yogurt - Rs.250/kg</option>
-        <option value="Fresh Desi Ghee">Fresh Desi Ghee - Rs.3600/kg</option>
-      </select><br><br>
-
-      <label>Quantity (kg):</label><br>
-      <input type="number" id="quantity" min="1" required style="width:100%; padding:8px;"><br><br>
-
-      <button type="submit">Send Order on WhatsApp</button>
-    </form>
-
-    <hr>
-
-    <h3>Admin Panel / ایڈمن پینل</h3>
-    <input type="password" id="adminPassword" placeholder="Enter Admin Password" style="width:100%; padding:8px;">
-    <button onclick="loginAdmin()">Login</button>
-
-    <div class="admin-section" id="adminPanel">
-      <h2>Orders Received</h2>
-      <ul id="orderList"></ul>
-      <button onclick="clearOrders()">Clear All Orders</button>
+<section id="menu">
+  <h2>Our Menu / ہمارا مینو</h2>
+  <div class="menu-container">
+    <div class="item">
+      <h3>Fresh Milk (Only Buffalos)</h3>
+      <p>تازہ دودھ (بھینس کا)</p>
+      <p><b>Rs. 220 per kg</b></p>
+    </div>
+    <div class="item">
+      <h3>Fresh Milk (Cows & Buffalos)</h3>
+      <p>تازہ دودھ (گائے اور بھینس کا)</p>
+      <p><b>Rs. 200 per kg</b></p>
+    </div>
+    <div class="item">
+      <h3>Fresh Yogurt</h3>
+      <p>تازہ دہی</p>
+      <p><b>Rs. 250 per kg</b></p>
+    </div>
+    <div class="item">
+      <h3>Fresh Desi Ghee</h3>
+      <p>خالص دیسی گھی</p>
+      <p><b>Rs. 3600 per kg</b></p>
     </div>
   </div>
+</section>
 
-  <footer>
-    © 2025 Serajia Milk Shop - Designed with ❤️ for Freshness
-  </footer>
+<section id="order">
+  <h2>Place Your Order / آرڈر کریں</h2>
+  <div class="order-form">
+    <input type="text" id="name" placeholder="Your Name / نام" required><br>
+    <select id="item">
+      <option value="Buffalo Milk">Fresh Milk (Only Buffalos) - Rs.220/kg</option>
+      <option value="Cow & Buffalo Milk">Fresh Milk (Cows & Buffalos) - Rs.200/kg</option>
+      <option value="Yogurt">Fresh Yogurt - Rs.250/kg</option>
+      <option value="Desi Ghee">Fresh Desi Ghee - Rs.3600/kg</option>
+    </select><br>
+    <input type="number" id="qty" placeholder="Quantity (kg)" min="1" required><br>
+    <input type="date" id="date" required><br>
+    <button onclick="sendOrder()">Send Order on WhatsApp</button>
+  </div>
+</section>
 
-  <script>
-    const phone = "923346253470"; // WhatsApp format (without +)
-    const adminPass = "milkadmin123"; // Change password if needed
+<section id="admin">
+  <h2>Admin Panel / ایڈمن پینل</h2>
+  <p style="text-align:center;">Enter password to view and manage orders:</p>
+  <div style="text-align:center;">
+    <input type="password" id="adminPass" placeholder="Enter Admin Password">
+    <button onclick="loginAdmin()">Login</button>
+  </div>
+  <div id="adminArea" style="display:none;margin-top:20px;">
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th><th>Name</th><th>Item</th><th>Qty</th><th>Status</th><th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="orderTable"></tbody>
+    </table>
+  </div>
+</section>
 
-    document.getElementById('orderForm').addEventListener('submit', function(e){
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const item = document.getElementById('item').value;
-      const quantity = document.getElementById('quantity').value;
+<footer>
+  © 2025 Serajia Milk Shop | Pure • Fresh • Natural
+</footer>
 
-      const message = `New Order from ${name}%0AItem: ${item}%0AQuantity: ${quantity} kg`;
-      const url = `https://wa.me/${phone}?text=${message}`;
+<script>
+const adminPassword="milkadmin123";
 
-      // Save order locally
-      const orders = JSON.parse(localStorage.getItem('orders')) || [];
-      orders.push({ name, item, quantity, time: new Date().toLocaleString() });
-      localStorage.setItem('orders', JSON.stringify(orders));
+function sendOrder(){
+  const name=document.getElementById('name').value.trim();
+  const item=document.getElementById('item').value;
+  const qty=document.getElementById('qty').value;
+  const date=document.getElementById('date').value;
+  if(!name||!item||!qty||!date){alert("Please fill all fields!");return;}
 
-      window.open(url, '_blank');
-      document.getElementById('orderForm').reset();
-    });
+  const order={name,item,qty,date,status:"Pending",time:new Date().toLocaleString()};
+  const orders=JSON.parse(localStorage.getItem("orders"))||[];
+  orders.push(order);
+  localStorage.setItem("orders",JSON.stringify(orders));
 
-    function loginAdmin(){
-      const pass = document.getElementById('adminPassword').value;
-      if(pass === adminPass){
-        document.getElementById('adminPanel').style.display = 'block';
-        loadOrders();
-      } else {
-        alert('Incorrect password');
-      }
-    }
+  const msg=`New Order from ${name}%0AItem: ${item}%0AQuantity: ${qty} kg%0ADate: ${date}`;
+  window.open(`https://wa.me/923346253470?text=${msg}`,"_blank");
+  alert("Order sent and saved for admin view!");
+  document.getElementById('name').value='';
+  document.getElementById('qty').value='';
+  document.getElementById('date').value='';
+}
 
-    function loadOrders(){
-      const orderList = document.getElementById('orderList');
-      orderList.innerHTML = '';
-      const orders = JSON.parse(localStorage.getItem('orders')) || [];
-      if(orders.length === 0){
-        orderList.innerHTML = '<li>No orders yet.</li>';
-        return;
-      }
-      orders.forEach(o=>{
-        const li = document.createElement('li');
-        li.textContent = `${o.time} - ${o.name} ordered ${o.quantity} kg of ${o.item}`;
-        orderList.appendChild(li);
-      });
-    }
+function loginAdmin(){
+  const pass=document.getElementById('adminPass').value;
+  if(pass===adminPassword){
+    document.getElementById('adminArea').style.display='block';
+    loadOrders();
+  } else alert("Incorrect password!");
+}
 
-    function clearOrders(){
-      if(confirm("Are you sure you want to clear all orders?")){
-        localStorage.removeItem('orders');
-        loadOrders();
-      }
-    }
-  </script>
+function loadOrders(){
+  const orders=JSON.parse(localStorage.getItem("orders"))||[];
+  const table=document.getElementById('orderTable');
+  table.innerHTML='';
+  if(orders.length===0){table.innerHTML="<tr><td colspan='6'>No Orders Yet</td></tr>";return;}
+  orders.forEach((o,i)=>{
+    const row=document.createElement('tr');
+    row.innerHTML=`
+      <td>${o.date}</td>
+      <td>${o.name}</td>
+      <td>${o.item}</td>
+      <td>${o.qty}</td>
+      <td>${o.status}</td>
+      <td>
+        <button onclick="markDone(${i})">✅ Done</button>
+        <button onclick="deleteOrder(${i})">🗑️ Delete</button>
+      </td>`;
+    table.appendChild(row);
+  });
+}
 
+function markDone(i){
+  const orders=JSON.parse(localStorage.getItem("orders"))||[];
+  orders[i].status="Completed";
+  localStorage.setItem("orders",JSON.stringify(orders));
+  loadOrders();
+}
+
+function deleteOrder(i){
+  const orders=JSON.parse(localStorage.getItem("orders"))||[];
+  if(confirm("Delete this order?")){orders.splice(i,1);localStorage.setItem("orders",JSON.stringify(orders));loadOrders();}
+}
+</script>
 </body>
-</html>
+</html>    
