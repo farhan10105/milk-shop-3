@@ -1,156 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Farhan's Milk Shop</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serajia Milk Shop</title>
   <style>
-    body { font-family: sans-serif; margin: 0; background: #f8f8f8; }
-    header { background: #2c3e50; color: white; padding: 20px; text-align: center; }
-    section { padding: 20px; }
-    .product, .review { background: white; padding: 15px; margin: 10px 0; border-radius: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
-    label { display: block; margin-top: 10px; }
-    input, select, textarea {
-      width: 100%; padding: 8px; margin-top: 5px;
-      border: 1px solid #ccc; border-radius: 5px;
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+      margin: 0;
+      padding: 0;
+      color: #222;
     }
-    button, .whatsapp-btn {
-      background: #27ae60; color: white; border: none;
-      padding: 10px 15px; margin-top: 15px;
-      border-radius: 5px; cursor: pointer;
-      text-decoration: none; display: inline-block;
+    header {
+      background: #006400;
+      color: white;
+      text-align: center;
+      padding: 20px;
     }
-    #replaceBtn { background: #e67e22; display: none; }
-
-    #adminPanel { display: none; margin-top: 20px; background: #fff; padding: 20px; border-radius: 10px; }
-    #adminPanel img { max-width: 100px; margin-top: 10px; }
+    h1 {
+      margin: 0;
+    }
+    .container {
+      width: 90%;
+      max-width: 800px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #006400;
+      border-bottom: 2px solid #006400;
+      padding-bottom: 5px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    button {
+      background: #006400;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #008000;
+    }
+    .admin-section {
+      display: none;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      background: #eee;
+      margin-top: 30px;
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Farhan's Milk Shop</h1>
-    <p>Fresh Dairy Products in Your Area</p>
+    <h1>Serajia Milk Shop</h1>
+    <p>491 /A Peoples Colony No.1, Near MC Model Higher Secondary School, Faisalabad</p>
+    <p>📞 Phone / WhatsApp: <strong>0334-6253470</strong></p>
   </header>
 
-  <section>
-    <h2>🛒 Our Products</h2>
+  <div class="container">
+    <h2>Menu / مینو</h2>
+    <table>
+      <tr>
+        <th>Item / آئٹم</th>
+        <th>Price / قیمت</th>
+      </tr>
+      <tr>
+        <td>Fresh Milk (Only Buffalos) / تازہ دودھ (بھینس کا)</td>
+        <td>Rs. 220 per kg</td>
+      </tr>
+      <tr>
+        <td>Fresh Milk (Cows & Buffalos) / تازہ دودھ (گائے اور بھینس کا)</td>
+        <td>Rs. 200 per kg</td>
+      </tr>
+      <tr>
+        <td>Fresh Yogurt / تازہ دہی</td>
+        <td>Rs. 250 per kg</td>
+      </tr>
+      <tr>
+        <td>Fresh Desi Ghee / خالص دیسی گھی</td>
+        <td>Rs. 3600 per kg</td>
+      </tr>
+    </table>
 
-    <div class="product"><h3>Milk (1L)</h3><p>Rs. 200</p></div>
-    <div class="product"><h3>Yogurt (1 Kg)</h3><p>Rs. 250</p></div>
-    <div class="product"><h3>Ghee (1 Kg)</h3><p>Rs. 3200</p></div>
-
-    <h2>📩 Place Your Order</h2>
+    <h2>Place an Order / آرڈر کریں</h2>
     <form id="orderForm">
-      <label for="name">Your Name</label>
-      <input type="text" id="name" required>
+      <label>Customer Name / نام:</label><br>
+      <input type="text" id="name" required style="width:100%; padding:8px;"><br><br>
 
-      <label for="phone">Phone Number</label>
-      <input type="tel" id="phone" required>
+      <label>Select Item / آئٹم منتخب کریں:</label><br>
+      <select id="item" required style="width:100%; padding:8px;">
+        <option value="Fresh Milk (Only Buffalos)">Fresh Milk (Only Buffalos) - Rs.220/kg</option>
+        <option value="Fresh Milk (Cows & Buffalos)">Fresh Milk (Cows & Buffalos) - Rs.200/kg</option>
+        <option value="Fresh Yogurt">Fresh Yogurt - Rs.250/kg</option>
+        <option value="Fresh Desi Ghee">Fresh Desi Ghee - Rs.3600/kg</option>
+      </select><br><br>
 
-      <label for="product">Product</label>
-      <select id="product" required>
-        <option value="">-- Select --</option>
-        <option value="Milk">Milk</option>
-        <option value="Yogurt">Yogurt</option>
-        <option value="Ghee">Ghee</option>
-      </select>
+      <label>Quantity (kg):</label><br>
+      <input type="number" id="quantity" min="1" required style="width:100%; padding:8px;"><br><br>
 
-      <label for="quantity">Quantity (e.g. 2 Liters or 3 Kg)</label>
-      <input type="text" id="quantity" required>
-
-      <label for="address">Delivery Address</label>
-      <textarea id="address" required></textarea>
-
-      <button type="button" onclick="sendWhatsApp()">Send Order via WhatsApp</button>
+      <button type="submit">Send Order on WhatsApp</button>
     </form>
-    <button id="replaceBtn" onclick="replaceOrder()">Replace Order</button>
-    <br><br>
-    <a class="whatsapp-btn" href="https://wa.me/923270553470" target="_blank">Chat on WhatsApp</a>
-  </section>
 
-  <section>
-    <h2>🗣️ Customer Reviews</h2>
-    <div id="reviewsContainer"></div>
-    <form onsubmit="addReview(event)">
-      <label for="reviewText">Write a Review</label>
-      <textarea id="reviewText" required></textarea>
-      <button type="submit">Submit Review</button>
-    </form>
-  </section>
+    <hr>
 
-  <section>
-    <h2>🔐 Admin Access</h2>
-    <button onclick="showAdmin()">Open Admin Page</button>
-    <div id="adminPanel">
-      <h3>Reply to Reviews</h3>
-      <div id="adminReviews"></div>
+    <h3>Admin Panel / ایڈمن پینل</h3>
+    <input type="password" id="adminPassword" placeholder="Enter Admin Password" style="width:100%; padding:8px;">
+    <button onclick="loginAdmin()">Login</button>
 
-      <h3>Add Picture</h3>
-      <input type="file" id="adminImageInput" onchange="previewImage(event)">
-      <img id="previewPic" src="" alt="Preview" />
+    <div class="admin-section" id="adminPanel">
+      <h2>Orders Received</h2>
+      <ul id="orderList"></ul>
+      <button onclick="clearOrders()">Clear All Orders</button>
     </div>
-  </section>
+  </div>
+
+  <footer>
+    © 2025 Serajia Milk Shop - Designed with ❤️ for Freshness
+  </footer>
 
   <script>
-    function sendWhatsApp() {
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const product = document.getElementById('product').value;
-      const quantity = document.getElementById('quantity').value;
-      const address = document.getElementById('address').value;
+    const phone = "923346253470"; // WhatsApp format (without +)
+    const adminPass = "milkadmin123"; // Change password if needed
 
-      if (!name || !phone || !product || !quantity || !address) {
-        alert("Please fill in all fields.");
+    document.getElementById('orderForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const item = document.getElementById('item').value;
+      const quantity = document.getElementById('quantity').value;
+
+      const message = `New Order from ${name}%0AItem: ${item}%0AQuantity: ${quantity} kg`;
+      const url = `https://wa.me/${phone}?text=${message}`;
+
+      // Save order locally
+      const orders = JSON.parse(localStorage.getItem('orders')) || [];
+      orders.push({ name, item, quantity, time: new Date().toLocaleString() });
+      localStorage.setItem('orders', JSON.stringify(orders));
+
+      window.open(url, '_blank');
+      document.getElementById('orderForm').reset();
+    });
+
+    function loginAdmin(){
+      const pass = document.getElementById('adminPassword').value;
+      if(pass === adminPass){
+        document.getElementById('adminPanel').style.display = 'block';
+        loadOrders();
+      } else {
+        alert('Incorrect password');
+      }
+    }
+
+    function loadOrders(){
+      const orderList = document.getElementById('orderList');
+      orderList.innerHTML = '';
+      const orders = JSON.parse(localStorage.getItem('orders')) || [];
+      if(orders.length === 0){
+        orderList.innerHTML = '<li>No orders yet.</li>';
         return;
       }
-
-      const message = `New Order:%0AName: ${name}%0APhone: ${phone}%0AProduct: ${product}%0AQuantity: ${quantity}%0AAddress: ${address}`;
-      const url = `https://wa.me/923270553470?text=${message}`;
-      window.open(url, '_blank');
-
-      document.getElementById('orderForm').style.display = 'none';
-      document.getElementById('replaceBtn').style.display = 'inline-block';
+      orders.forEach(o=>{
+        const li = document.createElement('li');
+        li.textContent = `${o.time} - ${o.name} ordered ${o.quantity} kg of ${o.item}`;
+        orderList.appendChild(li);
+      });
     }
 
-    function replaceOrder() {
-      document.getElementById('orderForm').reset();
-      document.getElementById('orderForm').style.display = 'block';
-      document.getElementById('replaceBtn').style.display = 'none';
-    }
-
-    function addReview(event) {
-      event.preventDefault();
-      const reviewText = document.getElementById('reviewText').value;
-      const reviewDiv = document.createElement('div');
-      reviewDiv.classList.add('review');
-      reviewDiv.innerHTML = `<p>${reviewText}</p><p><strong>Admin Reply:</strong> <span class="adminReply">Pending</span></p>`;
-      document.getElementById('reviewsContainer').appendChild(reviewDiv);
-
-      const adminReplyDiv = reviewDiv.cloneNode(true);
-      adminReplyDiv.querySelector('.adminReply').setAttribute('contenteditable', 'true');
-      document.getElementById('adminReviews').appendChild(adminReplyDiv);
-
-      document.getElementById('reviewText').value = '';
-    }
-
-    function showAdmin() {
-      const pass = prompt("Enter Admin Password:");
-      if (pass === "tyty0987654321") {
-        document.getElementById('adminPanel').style.display = 'block';
-      } else {
-        alert("Wrong password.");
-      }
-    }
-
-    function previewImage(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          document.getElementById('previewPic').src = e.target.result;
-        };
-        reader.readAsDataURL(file);
+    function clearOrders(){
+      if(confirm("Are you sure you want to clear all orders?")){
+        localStorage.removeItem('orders');
+        loadOrders();
       }
     }
   </script>
