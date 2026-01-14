@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,10 +16,10 @@
         }
 
         :root {
-            --primary: #4A90E2; /* Soft blue */
-            --secondary: #F5F0E6; /* Cream */
-            --accent: #7ED321; /* Fresh green */
-            --dark: #2C3E50; /* Dark blue-gray */
+            --primary: #4A90E2;
+            --secondary: #F5F0E6;
+            --accent: #7ED321;
+            --dark: #2C3E50;
             --light: #F9F9F9;
             --text: #333333;
             --text-light: #666666;
@@ -60,7 +60,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 2000;
             animation: fadeOut 0.8s ease 2.5s forwards;
         }
 
@@ -72,8 +72,6 @@
             font-size: 80px;
             margin-bottom: 20px;
             animation: bounce 1.5s ease infinite, fill 2s ease 1s forwards;
-            position: relative;
-            display: inline-block;
         }
 
         .logo-text {
@@ -181,9 +179,72 @@
             cursor: pointer;
         }
 
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: var(--transition);
+            padding: 80px 30px 30px;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mobile-menu-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 18px;
+            font-weight: 500;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-menu-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+        }
+
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1563636619-e9143da7973b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1563636619-e9143da7973b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
             background-size: cover;
             background-position: center;
             padding: 100px 0;
@@ -214,6 +275,8 @@
             font-size: 18px;
             transition: var(--transition);
             box-shadow: 0 6px 15px rgba(126, 211, 33, 0.3);
+            border: none;
+            cursor: pointer;
         }
 
         .cta-button:hover {
@@ -291,6 +354,8 @@
             transition: var(--transition);
             display: flex;
             flex-direction: column;
+            align-items: center;
+            text-align: center;
             height: 100%;
         }
 
@@ -300,8 +365,15 @@
         }
 
         .menu-emoji {
-            font-size: 40px;
-            margin-bottom: 15px;
+            font-size: 50px;
+            margin-bottom: 20px;
+            height: 80px;
+            width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--secondary);
+            border-radius: 50%;
         }
 
         .menu-item h3 {
@@ -409,6 +481,168 @@
             font-size: 14px;
         }
 
+        /* Admin Panel */
+        .admin-panel {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 500px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+            z-index: 2000;
+            transition: var(--transition);
+            overflow-y: auto;
+            padding: 30px;
+        }
+
+        .admin-panel.active {
+            right: 0;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .admin-header h2 {
+            color: var(--dark);
+        }
+
+        .close-admin {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .admin-section {
+            margin-bottom: 30px;
+        }
+
+        .admin-section h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+        }
+
+        .admin-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .admin-btn:hover {
+            background-color: #3a7bc8;
+        }
+
+        .admin-btn.danger {
+            background-color: #e74c3c;
+        }
+
+        .admin-btn.danger:hover {
+            background-color: #c0392b;
+        }
+
+        .admin-login {
+            max-width: 400px;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+
+        .password-toggle {
+            position: relative;
+        }
+
+        .password-toggle .toggle-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+        }
+
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .success-message.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Secret Gesture Indicator */
+        .secret-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            opacity: 0.3;
+            z-index: 99;
+            user-select: none;
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero h1 {
@@ -426,25 +660,7 @@
             }
             
             .nav-links {
-                position: fixed;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background-color: white;
-                flex-direction: column;
-                padding: 20px;
-                box-shadow: 0 10px 20px var(--shadow);
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: var(--transition);
-                z-index: 99;
-            }
-            
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
+                display: none;
             }
             
             .hero h1 {
@@ -457,6 +673,11 @@
             
             .section-title {
                 font-size: 30px;
+            }
+
+            .admin-panel {
+                width: 100%;
+                max-width: 100%;
             }
         }
 
@@ -488,8 +709,24 @@
     <div id="logo-animation">
         <div class="logo-container">
             <div class="milk-bottle">🥛</div>
-            <div class="logo-text">Sirajia Milk Shop</div>
+            <div class="logo-text" id="shop-name">Sirajia Milk Shop</div>
             <div class="logo-tagline">Pure & Fresh Dairy Products Since 2010</div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="mobile-menu-links">
+            <a href="#home">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#features">Services</a>
+            <a href="#footer">Contact</a>
         </div>
     </div>
 
@@ -499,17 +736,17 @@
             <nav>
                 <div class="nav-logo">
                     <i class="fas fa-glass-whiskey"></i>
-                    <span>Sirajia Milk Shop</span>
+                    <span id="header-shop-name">Sirajia Milk Shop</span>
                 </div>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
                 <div class="nav-links" id="navLinks">
                     <a href="#home">Home</a>
                     <a href="#menu">Menu</a>
                     <a href="#features">Services</a>
                     <a href="#footer">Contact</a>
                 </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
             </nav>
         </div>
     </header>
@@ -517,8 +754,8 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <h1>Pure & Fresh Dairy Products</h1>
-            <p>Experience the finest quality milk and dairy products from Sirajia Milk Shop. We deliver freshness straight from our farm to your home.</p>
+            <h1 id="hero-title">Pure & Fresh Dairy Products</h1>
+            <p id="hero-description">Experience the finest quality milk and dairy products from Sirajia Milk Shop. We deliver freshness straight from our farm to your home.</p>
             <a href="#menu" class="cta-button">Order Now</a>
         </div>
     </section>
@@ -529,120 +766,4 @@
             <h2 class="section-title">Our Services</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🏠</div>
-                    <h3>Home Delivery</h3>
-                    <p>Fresh dairy products delivered to your doorstep every morning. We ensure timely delivery to maintain freshness.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📦</div>
-                    <h3>Online Order System</h3>
-                    <p>Easy online ordering with secure payment options. Order through WhatsApp or our website.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🚚</div>
-                    <h3>Free Delivery</h3>
-                    <p>Free home delivery on orders above Rs. 1000. Regular delivery schedules for subscription customers.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Menu Section -->
-    <section class="menu" id="menu">
-        <div class="container">
-            <h2 class="section-title">Our Dairy Products</h2>
-            <div class="menu-grid">
-                <div class="menu-item">
-                    <div class="menu-emoji">🥛</div>
-                    <h3>Milk</h3>
-                    <p class="menu-description">Fresh Cow + Buffalo milk blend. Rich in nutrients and taste, perfect for your daily needs.</p>
-                    <div class="menu-price">Rs. 200 per kg</div>
-                    <button class="order-btn" data-item="Milk (Cow + Buffalo) - Rs. 200 per kg">Order Now</button>
-                </div>
-                <div class="menu-item">
-                    <div class="menu-emoji">🐃</div>
-                    <h3>Pure Buffalo Milk</h3>
-                    <p class="menu-description">100% pure buffalo milk. Thicker and creamier, ideal for making desserts and tea.</p>
-                    <div class="menu-price">Rs. 220 per kg</div>
-                    <button class="order-btn" data-item="Pure Buffalo Milk - Rs. 220 per kg">Order Now</button>
-                </div>
-                <div class="menu-item">
-                    <div class="menu-emoji">🥣</div>
-                    <h3>Yogurt</h3>
-                    <p class="menu-description">Homemade fresh yogurt. Rich in probiotics, perfect for your digestive health.</p>
-                    <div class="menu-price">Rs. 250 per kg</div>
-                    <button class="order-btn" data-item="Yogurt - Rs. 250 per kg">Order Now</button>
-                </div>
-                <div class="menu-item">
-                    <div class="menu-emoji">🧈</div>
-                    <h3>Desi Ghee</h3>
-                    <p class="menu-description">Traditional homemade desi ghee. Made from pure butter for authentic taste and aroma.</p>
-                    <div class="menu-price">Rs. 3600 per kg</div>
-                    <button class="order-btn" data-item="Desi Ghee - Rs. 3600 per kg">Order Now</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- WhatsApp Button -->
-    <a href="https://wa.me/923270553470?text=Hi%20Sirajia%20Milk%20Shop!%20I%20would%20like%20to%20place%20an%20order." class="whatsapp-btn" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- Footer -->
-    <footer id="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <h3>Sirajia Milk Shop</h3>
-                    <p>Providing fresh, pure and high-quality dairy products since 2010. Our commitment is to deliver nature's best to your table.</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Info</h3>
-                    <div class="contact-info">
-                        <i class="fas fa-phone"></i>
-                        <span>0327 0553470</span>
-                    </div>
-                    <div class="contact-info">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Lahore, Pakistan</span>
-                    </div>
-                    <div class="contact-info">
-                        <i class="fas fa-clock"></i>
-                        <span>Open Daily: 6:00 AM - 10:00 PM</span>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Delivery Information</h3>
-                    <p>🏠 Home delivery available in all major areas</p>
-                    <p>⏰ Morning delivery slot: 6 AM - 9 AM</p>
-                    <p>⏰ Evening delivery slot: 5 PM - 8 PM</p>
-                    <p>🚚 Free delivery on orders above Rs. 1000</p>
-                </div>
-            </div>
-            <div class="copyright">
-                &copy; 2023 Sirajia Milk Shop. All rights reserved. | Premium Dairy Products
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile Menu Toggle
-        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-            document.getElementById('navLinks').classList.toggle('active');
-            const icon = this.querySelector('i');
-            if (icon.classList.contains('fa-bars')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', function() {
-                document.getElementById('navLinks').classList.remove('active');
-                document.getElementById('mobileMenuBtn').queryS
-
+             
